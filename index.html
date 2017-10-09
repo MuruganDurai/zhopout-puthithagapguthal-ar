@@ -7,6 +7,9 @@
 <body style='margin : 0px; overflow: hidden;'>
   <a-scene embedded artoolkit='sourceType:webcam;'>
       <a-anchor hit-testing-enabled='true'>
+      <a-assets>
+      	<a-asset-item id="earth" src="/assets/scene.gltf"></a-asset-item>
+      </a-assets>
       <a-box position='0 0.5 0' material='opacity: 0.5;'></a-box>
       </a-anchor>
     <!-- <a-marker-camera preset='hiro'><a-marker-camera/> -->
