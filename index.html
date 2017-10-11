@@ -15,11 +15,13 @@
         gltf-model-next="src: url(./assets/marcus/scene.gltf);"
         animation-mixer>
       </a-entity>
-      <a-animation attribute="rotation"                   
-                   fill="forwards"
-                   to="0 360 0"
+      <a-animation attribute="alternate"                   
+                   fill="backwards"
+                   to="0 0 0.5"
                    repeat="indefinite"
-                   direction="alternateReverse">        
+                   direction="alternateReverse"
+                   begin="1000"
+                   dur="10000">        
       </a-animation>
       </a-entity>
     </a-marker>        
