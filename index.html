@@ -9,13 +9,21 @@
   <a-scene embedded artoolkit='sourceType:webcam;'>
   
     <a-marker preset="hiro">    
-      <!-- <a-box position='0 0.5 0' material='opacity: 0.7;'></a-box>      -->
-      <a-entity id="drone" position="0 0 -0.4" scale="1 1 1"
+      
+    <a-entity>
+      <a-entity id="drone" position="0 0 0.5" scale="1 1 1"
         gltf-model-next="src: url(./assets/marcus/scene.gltf);"
         animation-mixer>
       </a-entity>
-    </a-marker>    
-
+      <a-animation attribute="rotation"
+                   dur="10000"
+                   fill="forwards"
+                   to="0 360 0"
+                   repeat="indefinite"
+                   direction="reverse">        
+      </a-animation>
+      </a-entity>
+    </a-marker>        
   </a-scene>  
 </body>
 </html>
