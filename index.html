@@ -12,7 +12,7 @@
 </head>
 <body style='margin : 0px; overflow: hidden;'>
     <a-scene class="ar-video" embedded artoolkit='sourceType:webcam;'>
-      <canvas id="canvas" width="640" height="480" style="display:none"></canvas>
+      <canvas id="doubleImage" width="640" height="480" style="visibility:hidden;"></canvas>
       <a-marker preset="hiro">    
 
       <a-entity>
@@ -36,33 +36,45 @@
             </div>
 </body>
    <script>
-            // Grab elements, create settings, etc.
-            var video = document.getElementById('video');
+      function takeScreenshot() {
+			var w = window.open('', '');
+			w.document.title = "Screenshot";
+			var img = new Image();
+			var secondImg = new Image();
+			renderer.render(scene, camera);
+			var doubleImageCanvas = document.getElementById('doubleImage');
+			var context = doubleImageCanvas.getContext('2d');
+			var sources = {
+				firstImage: renderer.domElement.toDataURL("image/png"),
+				secondImage: arToolkitContext.arController.canvas.toDataURL("image/png")
+			};
 
-            // Elements for taking the snapshot
-            var canvas = document.getElementById('canvas');
-            var context = canvas.getContext('2d');
-            var video = document.getElementById('video');
-        
-     
-        document.getElementById('download').addEventListener('click', function() {
-        context.drawImage(video, 0, 0, 640, 480);
-        downloadCanvas(this, 'canvas', new Date().toJSON()+".png");
-        }, false);
-                
-            // Get access to the camera!
-            if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-                // Not adding `{ audio: true }` since we only want video now
-                navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
-                    video.src = window.URL.createObjectURL(stream);
-                    video.play();
-                });
-            }
-            function downloadCanvas(link, canvasId, filename) {
-                    link.href = document.getElementById(canvasId).toDataURL();
-                    link.download = filename;
-                }
-         
-        </script>
+			loadImages(sources, function(images){
+				context.drawImage(images.secondImage, 0, 0);
+				context.drawImage(images.firstImage, 0, 0);
+				img.src = doubleImageCanvas.toDataURL("image/png");
+				w.document.body.appendChild(img);
+			});
+		}
+
+		function loadImages(sources, callback) {
+			var images = {};
+			var loadedImages = 0;
+			var numImages = 0;
+			// get num of sources
+			for (var src in sources) {
+				numImages++;
+			}
+			for (var src in sources) {
+				images[src] = new Image();
+				images[src].onload = function () {
+					if (++loadedImages >= numImages) {
+						callback(images);
+					}
+				};
+				images[src].src = sources[src];
+			}
+		}              
+   </script>
 </html>
 
