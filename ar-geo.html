@@ -402,13 +402,12 @@ window.onload = function(){
 	<a-scene embedded artoolkit='sourceType: webcam;'><!--  -->
 		
 		<a-camera id="camera" user-height="1.6" gps-position compass-rotation><!--  --></a-camera>
-		
-		<!--<a-sphere gps-place="longitude: 37.470155; latitude: 55.153565"></a-sphere>-->
-		
-
-	    <a-entity gps-place="longitude: 37.470155; latitude: 55.153565" 
-		gltf-model-next="src: url(./assets/marcus/scene.gltf);" animation-mixer>
-	    </a-entity>
+		 <a-entity>
+	   		<a-sphere gps-place="longitude: 37.470155; latitude: 55.153565"></a-sphere>		
+	    			<a-entity gps-place="longitude: 37.470155; latitude: 55.153565" 
+					gltf-model-next="src: url(./assets/marcus/scene.gltf);" animation-mixer>
+	    			</a-entity>
+		</a-entity>
 		
 	</a-scene>
 </body>
