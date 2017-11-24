@@ -6,14 +6,11 @@
   <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script> 
 </head>
 <body style='margin : 0px; overflow: hidden;'>
-    <a-scene class="ar-video" embedded artoolkit='sourceType:webcam;'>
-      <canvas id="doubleImage" width="640" height="480" style="visibility:hidden;"></canvas>
-      <a-marker preset="hiro">    
-      	<a-entity>
-       	  <a-entity id="drone" position="0 0 -0.5" scale="0.5 0.5 0.5" rotation="-90 -45 45"
+    <a-scene class="ar-video" embedded artoolkit='sourceType:webcam;'>      
+      <a-marker preset="hiro">          	
+       	  <a-entity position="0 0 -0.5" scale="0.5 0.5 0.5" rotation="-90 -45 45"
             gltf-model-next="src: url(./assets/aj_bellydancing/scene.gltf);">
-          </a-entity>        
-        </a-entity>
+          </a-entity>                
       </a-marker>        
     </a-scene>       
 </body>   
