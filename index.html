@@ -1,17 +1,28 @@
 <!doctype HTML>
 <html>
 <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
-<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js"> </script>
+<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+<script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>  
+  
   <body style='margin : 0px; overflow: hidden;'>
     <a-scene embedded arjs>
-  	<a-marker-camera preset="hiro">       
-      <a-entity position="0 0 -0.5" scale="0.5 0.5 0.5" rotation="-90 -45 45"
-        gltf-model="src: url(https://murugandurai.github.io/zhopout-puthithagapguthal-ar/assets/aj_bellydancing/scene.gltf);">
-      </a-entity>             
+  	<a-marker-camera preset="hiro">  
+     <a-entity>     
+      <a-entity position="0 0 -0.5" scale="1 1 1" rotation="-90 280 90"
+        gltf-model="src: url(https://murugandurai.github.io/zhopout-puthithagapguthal-ar/assets/santa_dancing/scene.gltf);" 
+       animation-mixer>
+      </a-entity>                     
+      <a-animation attribute="alternate"                   
+                   fill="backwards"
+                   to="0 0 0.5"
+                   repeat="indefinite"
+                   direction="alternateReverse"
+                   begin="1000"
+                   dur="10000">        
+      </a-animation>
+     </a-entity>           
   	</a-marker-camera>
   	<a-entity camera></a-entity>
     </a-scene>
   </body>
 </html>
-
- 
